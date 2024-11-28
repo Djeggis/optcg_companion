@@ -23,4 +23,4 @@ Methods:
 
 Future goals:
 - Implementation with the OPTCG Sim
-- - This will help with both card data visualization as well as card classification, as integrating it into OPTCG Sim will provide the necessary tags and databases
+  - This will help with both card data visualization as well as card classification, as integrating it into OPTCG Sim will provide the necessary tags and databases
