@@ -1,0 +1,13 @@
+# Module 1: Deck Construction
+# 1. Scrape data from tournament reporting sites
+# (2.) Categorize card categories
+# 3. Deck list input
+# (4.) Calculate deck statistics
+# 5. NLP: Analyze differences between input deck and winning decks and give suggestions based off of list
+#    -Any immediate suggestions (specific card is missing that exists in majority of winning decks)
+#    -Recommend ratio changes (winning decks have certain ratios of card types)
+#    -Ask for anything specific the user wants to analyze
+# 
+# 2. and 4. are technically not critical to the NLP portion, so will be set aside for now
+
+
