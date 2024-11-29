@@ -64,18 +64,18 @@ deck_xarray = xr.DataArray(
         "Card": average_quantity_df.columns.values,  # Coordinates for the card names
         "Leader": average_quantity_df.index.values  # Coordinates for the leader names
     },
-    dims=["Card", "Leader"],  # Dimensions for the data
+    dims=["Leader", "Card"],  # Dimensions for the data
     name="Average Card Quantity"
 )
 
-# # Display the xarray of average card quantities for a specific leader, for example "Leader Card A"
-# leader_data = deck_xarray.sel(Leader="Leader Card A")
+# Display the xarray of average card quantities for a specific leader, for example "Leader Card A"
+leader_data = deck_xarray.sel(Leader="ST13-003")
 
 # # Sort the xarray by the "Average Card Quantity" values (highest to lowest)
-# sorted_leader_data = leader_data.sortby("Card", ascending=False)
 
 # # Display the sorted data
-# print(sorted_leader_data)
+# print(leader_data)
 
 
 ####################################################
+
