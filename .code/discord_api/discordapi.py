@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import discord
 import os
+import deck2vec as d2v
 
 load_dotenv()
 
