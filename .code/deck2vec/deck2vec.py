@@ -56,7 +56,7 @@ def dataset_to_xarray(filepath):
     # Calculate the average quantity of each card for each leader
     # The goal here is to calculate the average card quantity for each leader's appearances
     average_quantity_df = quantity_df.groupby(quantity_df.index).mean()
-    print(average_quantity_df)
+    # print(average_quantity_df)
 
     # Now create the xarray with average quantities for each card and leader
     deck_xarray = xr.DataArray(
@@ -89,12 +89,44 @@ def deck_to_data(text):
     for line in lines:
         quant = line.split("x")[0]
         card = line.split("x")[1]
-        deck.append([quant, card])
+        deck.append([card, quant])
     df = pd.DataFrame(deck)
-    print(df)
+    # print(df)
     return df
+
+data = dataset_to_xarray("output.csv")
+deck = deck_to_data("1xOP01-060\n4xEB01-023\n4xOP02-054\n3xOP06-047\n4xOP07-040\n4xOP07-045\n4xOP07-046\n4xST03-004\n4xST03-005\n4xST17-002\n4xST17-003\n4xST17-004\n4xST17-005\n1xOP04-056\n2xOP07-057")
 
 # make suggestion
 def suggestion(data, deck):
     # look at each card in deck, compare with leader from data, return list of suggested changes
-    pass
+    leader = deck[0][0]
+    changes = ""
+
+    # threshold to add to suggestion
+    thresh = 0
+
+    # will change later to iterate through dataset rather than decklist, that way can find possible card changes
+    for card_tuple in deck.itertuples():
+        card = card_tuple[1]
+        quant = card_tuple[2]
+
+        # skip leader card
+        if leader == card:
+            continue
+
+        # match to corresponding data point
+        if leader in data.coords["Leader"].values and card in data.coords["Card"].values:
+            quant_data = data.sel(Leader=leader, Card=card)
+            comp = abs(quant_data.values - int(quant))
+            if comp > thresh:
+                if quant_data.values < int(quant):
+                    changes += f"{card}: -copies\n"
+                else:
+                    changes += f"{card}: +copies\n"
+        else:
+            changes += f"{card}: ?\n"
+    print(changes)
+    return changes
+
+suggestion(data, deck)
