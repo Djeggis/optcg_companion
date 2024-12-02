@@ -1,1 +1,0 @@
-user_deck = d2v.deck_to_data(user_decklist)

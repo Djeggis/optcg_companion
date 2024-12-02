@@ -1,16 +1,14 @@
 from dotenv import load_dotenv
 import discord
 import os
-import deck2vec as d2v
+
 import openai
-import sys
-sys.path.append('../')
-from deck2vec import deck2vec as d2v
+from app.deck2vec import d2v as d2v
 
 load_dotenv()
 
 discord_token = os.getenv('DISCORD_TOKEN')
-openai.api_key = os.getenc('CHATGPT_API_KEY')
+openai.api_key = os.getenv('CHATGPT_API_KEY')
 
 # setup discord client
 class MyClient(discord.Client):
