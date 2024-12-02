@@ -95,12 +95,14 @@ def deck_to_data(text):
     # print(df)
     return df
 
-data = dataset_to_xarray("output.csv")
-deck = deck_to_data("1xOP01-060\n4xEB01-023\n4xOP02-054\n3xOP06-047\n4xOP07-040\n4xOP07-045\n4xOP07-046\n4xST03-004\n4xST03-005\n4xST17-002\n4xST17-003\n4xST17-004\n4xST17-005\n1xOP04-056\n2xOP07-057")
+# data = dataset_to_xarray("output.csv")
+# deck = deck_to_data("1xOP01-060\n4xEB01-023\n4xOP02-054\n3xOP06-047\n4xOP07-040\n4xOP07-045\n4xOP07-046\n4xST03-004\n4xST03-005\n4xST17-002\n4xST17-003\n4xST17-004\n4xST17-005\n1xOP04-056\n2xOP07-057")
 
 # make suggestion
-def suggestion(data, deck):
+def suggestion(deck):
     # look at each card in deck, compare with leader from data, return list of suggested changes
+    data = dataset_to_xarray("output.csv")
+    
     leader = deck[0][0]
     changes = []
 
@@ -151,4 +153,4 @@ def suggestion(data, deck):
     # # print(changes)
     return changes
 
-print(suggestion(data, deck))
+# print(suggestion(data, deck))
