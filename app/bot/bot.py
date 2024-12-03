@@ -46,7 +46,7 @@ class MyClient(discord.Client):
                 # If the content is within the limit, send it in one message
                 await message.channel.send(f"Answer: {bot_response}")
 
-        if command == 'suggest':
+        if command == '/suggest':
             bot_response = await self.suggest(user_decklist=userMessage)
 
             if len(bot_response) > 1500:
@@ -77,15 +77,18 @@ class MyClient(discord.Client):
             return f"Error: {str(e)}"
     
     # bot commands
-    async def suggest(user_decklist):
+    async def suggest(self, user_decklist):
 
         # compare a user's decklist to averages and suggest changes
         try:
             # Parse the user's decklist
             user_deck = d2v.deck_to_data(user_decklist)
-
             # Generate suggestions
-            return d2v.suggestion(user_deck)
+            suggestion = d2v.suggestion(user_deck)
+            suggestion_list = ""
+            for line in suggestion:
+                suggestion_list += line
+            return suggestion_list
         except Exception as e:
             await ctx.send(f"Error processing your decklist: {str(e)}")
 
