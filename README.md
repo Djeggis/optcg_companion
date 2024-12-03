@@ -1,6 +1,6 @@
 # optcg_companion
 NLP Project - Companion for the One Piece Card Game  
-Demo Video: https://youtu.be/KQIz5-BInOU
+(Demo Video: https://youtu.be/KQIz5-BInOU)
 ---
 Currently includes functionality for:
 - Decklist Scraping
